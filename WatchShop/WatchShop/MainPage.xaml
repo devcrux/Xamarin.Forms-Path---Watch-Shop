@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:vm="clr-namespace:WatchShop.ViewModel"
+             mc:Ignorable="d" BackgroundColor="#F5F6F6"
+             x:Class="WatchShop.MainPage">
+
+    <ContentPage.BindingContext>
+        <vm:MainViewModel x:Name="vm"/>
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <Grid RowDefinitions="Auto, Auto, Auto, *" RowSpacing="30" Padding="30">
+            <Grid ColumnDefinitions="Auto, *, Auto">
+                <ImageButton Source="menu.png" BackgroundColor="Transparent" VerticalOptions="Center" 
+                             HeightRequest="24" WidthRequest="24" Clicked="MenuTapped"/>
+                <Label Grid.Column="1" Text="Watch Shop" TextColor="#2D2942" FontSize="20" FontAttributes="Bold" 
+                       VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Image Grid.Column="2" Source="Cart.png" VerticalOptions="Center" HeightRequest="24" WidthRequest="24"/>
+            </Grid>
+            <Grid Grid.Row="1" ColumnDefinitions="*, Auto" ColumnSpacing="15">
+                <Frame Padding="10" BackgroundColor="#E6EAEA" CornerRadius="25" BorderColor="Transparent">
+                    <StackLayout Spacing="15" Orientation="Horizontal">
+                        <Path Fill="#2D2942" Opacity="0.5" Data="M17.8901 16.8296L12.6613 11.6007C13.653 10.3764 14.25 8.81977 14.25 7.12503C14.25 3.19631 11.0537 0 7.12499 0C3.19627 0 0 3.19631 0 7.12503C0 11.0537 3.19631 14.2501 7.12503 14.2501C8.81977 14.2501 10.3764 13.653 11.6007 12.6613L16.8296 17.8902C16.9761 18.0366 17.2135 18.0366 17.36 17.8902L17.8902 17.3599C18.0366 17.2135 18.0366 16.976 17.8901 16.8296ZM7.12503 12.75C4.02322 12.75 1.50001 10.2268 1.50001 7.12503C1.50001 4.02322 4.02322 1.50001 7.12503 1.50001C10.2268 1.50001 12.75 4.02322 12.75 7.12503C12.75 10.2268 10.2268 12.75 7.12503 12.75Z" 
+                            Aspect="Uniform" VerticalOptions="Center" HeightRequest="18" WidthRequest="18"/>
+                        <Label Text="Search" TextColor="#2D2942" FontSize="15" Opacity="0.5" VerticalOptions="Center" 
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Grid Grid.Column="1" HorizontalOptions="End">
+                    <Ellipse HeightRequest="42" WidthRequest="42" Fill="White"/>
+                    <Image Source="Filter.png" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" ColumnDefinitions="*, Auto" ColumnSpacing="15">
+                <Label Text="Popular" TextColor="#2D2942" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" />
+                <Image Grid.Column="1" Source="threeDots.png" VerticalOptions="Center" HeightRequest="20" 
+                       WidthRequest="20"/>
+            </Grid>
+            <CollectionView Grid.Row="3" SelectionMode="None" ItemsSource="{Binding Products}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <Label Text="No Item found." TextColor="Gray" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions="*, 2.5*" HeightRequest="190" BackgroundColor="White" Padding="15">
+                            <Grid.Clip>
+                                <PathGeometry Figures="M20 96.5596C20 92.4719 22.0807 88.6655 25.5215 86.4586L146.521 8.85176C154.508 3.72922 165 9.46434 165 18.9527V185C165 191.627 159.627 197 153 197H32C25.3726 197 20 191.627 20 185V96.5596Z"/>
+                            </Grid.Clip>
+                            <Grid HorizontalOptions="End" VerticalOptions="Start">
+                                <Ellipse Fill="Red" HeightRequest="20" WidthRequest="20"/>
+                                <Path Fill="White" Aspect="Uniform" VerticalOptions="Center" HorizontalOptions="Center"
+                                    Data="M9.2067 1.41754C8.68904 0.856094 7.97874 0.546875 7.2065 0.546875C6.62926 0.546875 6.10062 0.72937 5.63522 1.08925C5.40039 1.2709 5.18761 1.49315 5 1.75255C4.81247 1.49323 4.59961 1.2709 4.3647 1.08925C3.89938 0.72937 3.37074 0.546875 2.7935 0.546875C2.02126 0.546875 1.31088 0.856094 0.793228 1.41754C0.281754 1.97243 0 2.73048 0 3.55217C0 4.39789 0.31517 5.17204 0.991821 5.98854C1.59714 6.7189 2.46712 7.46033 3.47458 8.31886C3.81859 8.61206 4.20853 8.9444 4.61342 9.2984C4.72038 9.39209 4.85764 9.44366 5 9.44366C5.14229 9.44366 5.27962 9.39209 5.38643 9.29855C5.79132 8.94447 6.18149 8.61198 6.52565 8.31863C7.53296 7.46025 8.40294 6.7189 9.00826 5.98846C9.68491 5.17204 10 4.39789 10 3.55209C10 2.73048 9.71825 1.97243 9.2067 1.41754Z"/>
+                            </Grid>
+                            <StackLayout Grid.Row="1" Orientation="Horizontal" VerticalOptions="FillAndExpand" 
+                                     HorizontalOptions="FillAndExpand" Padding="10,0,0,0">
+                                <Image Source="{Binding Image}" WidthRequest="45" HorizontalOptions="Start"/>
+                                <StackLayout Spacing="5" VerticalOptions="CenterAndExpand">
+                                    <Label Text="{Binding Name}" TextColor="#2D2942" FontSize="14"/>
+                                    <Label Text="{Binding Model}" TextColor="#2D2942" FontSize="12" Opacity="0.5"/>
+                                    <Label Text="{Binding Price, StringFormat='${0}'}" TextColor="#2D2942" FontSize="14" 
+                                           FontAttributes="Bold"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Rating}" TextColor="#2D2942" FontSize="12" Opacity="0.5"/>
+                                        <Path Aspect="Uniform" Fill="#FFC344" WidthRequest="12" HeightRequest="12"
+                                          Data="M6 0L7.86916 3.42733L11.7063 4.1459L9.02436 6.98267L9.52671 10.8541L6 9.18L2.47329 10.8541L2.97564 6.98267L0.293661 4.1459L4.13084 3.42733L6 0Z"/>
+                                        <Image Source="eye.png" WidthRequest="12" HeightRequest="12" Margin="5,0,0,0"/>
+                                        <Label Text="{Binding Views}" TextColor="#2D2942" FontSize="12" Opacity="0.5"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+        <Grid x:Name="MenuGrid" IsVisible="False">
+            <BoxView x:Name="MenuOverlay" BackgroundColor="Black" Opacity="0.35">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OverlayTapped"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <Grid x:Name="MenuView" WidthRequest="260" BackgroundColor="#483635" 
+                  HorizontalOptions="Start" TranslationX="-260">
+                <Grid.Clip>
+                    <PathGeometry Figures="M0,0V511.043H140.714l86.992-116.012V0Z"/>
+                </Grid.Clip>
+                <StackLayout Margin="30,100" Spacing="20" BindableLayout.ItemsSource="{Binding MenuList}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" Spacing="20">
+                                <Grid Grid.Row="2" HorizontalOptions="Start" VerticalOptions="Start"
+                                      HeightRequest="46" WidthRequest="46">
+                                    <Ellipse WidthRequest="46" HeightRequest="46" Fill="White" Opacity="0.5"/>
+                                    <Image Source="{Binding Icon}" WidthRequest="22" HeightRequest="22"
+                                            HorizontalOptions="Center" VerticalOptions="Center" />
+                                </Grid>
+                                <Label Text="{Binding Name}" TextColor="White" FontSize="16" VerticalOptions="Center"
+                                        FontFamily="NormalFont"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>
