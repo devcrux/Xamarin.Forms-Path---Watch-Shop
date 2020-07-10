@@ -15,6 +15,15 @@ namespace WatchShop.ViewModel
             MenuList = GetMenus();
         }
 
+        private Product selectedProduct;
+
+        public Product SelectedProduct
+        {
+            get { return selectedProduct; }
+            set { selectedProduct = value; }
+        }
+
+
         private ObservableCollection<Product> products;
         public ObservableCollection<Product> Products
         {
@@ -27,6 +36,12 @@ namespace WatchShop.ViewModel
         {
             get { return menuList; }
             set { menuList = value; }
+        }
+
+        public void ShowDetails()
+        {
+            var page = new DetailsPage() { BindingContext = new DetailsViewModel { SelectedProduct = SelectedProduct } };
+            App.Current.MainPage.Navigation.PushAsync(page);
         }
 
         private ObservableCollection<Menu> GetMenus()
@@ -44,10 +59,10 @@ namespace WatchShop.ViewModel
         {
             return new ObservableCollection<Product>
             {
-                new Product { Name = "Hilfi Watch", Price = 789.99f, Image = "charlesWatch.png", Model = "Model 2011", Rating = 4.5, Views = 4.5},
-                new Product { Name = "Gold Watch", Price = 697.99f, Image = "johnWatch.png", Model = "Model 2009", Rating = 4.5, Views = 4.5},
-                new Product { Name = "Pierre LD Watch", Price = 897.99f, Image = "marekWatch.png", Model = "Model 2070", Rating = 4.5, Views = 4.5},
-                new Product { Name = "Omega RD Watch", Price = 567.99f, Image = "rutgeWatch.png", Model = "Model 1997", Rating = 4.5, Views = 4.5},
+                new Product { Name = "Hilfi Watch", Price = 789.99f, Image = "charlesWatch.png", Model = "Model 2011", Rating = 4.5, Views = 4.5, Description = "Occaecat qui sit quis labore reprehenderit nulla. Amet pariatur voluptate laboris ipsum veniam exercitation est do duis quis laborum reprehenderit aute."},
+                new Product { Name = "Gold Watch", Price = 697.99f, Image = "johnWatch.png", Model = "Model 2009", Rating = 4.5, Views = 4.5, Description = "Occaecat qui sit quis labore reprehenderit nulla. Amet pariatur voluptate laboris ipsum veniam exercitation est do duis quis laborum reprehenderit aute."},
+                new Product { Name = "Pierre LD Watch", Price = 897.99f, Image = "marekWatch.png", Model = "Model 2070", Rating = 4.5, Views = 4.5, Description = "Occaecat qui sit quis labore reprehenderit nulla. Amet pariatur voluptate laboris ipsum veniam exercitation est do duis quis laborum reprehenderit aute."},
+                new Product { Name = "Omega RD Watch", Price = 567.99f, Image = "rutgeWatch.png", Model = "Model 1997", Rating = 4.5, Views = 4.5, Description = "Occaecat qui sit quis labore reprehenderit nulla. Amet pariatur voluptate laboris ipsum veniam exercitation est do duis quis laborum reprehenderit aute."},
             };
         }
 
@@ -68,6 +83,7 @@ namespace WatchShop.ViewModel
         public double Rating { get; set; }
         public double Views { get; set; }
         public float Price { get; set; }
+        public string Description { get; set; }
     }
 
     public class Menu

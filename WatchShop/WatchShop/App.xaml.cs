@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.SharedTransitions;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace WatchShop
         {
             InitializeComponent();
             Device.SetFlags(new[] { "Shapes_Experimental" });
-            MainPage = new MainPage();
+            MainPage = new SharedTransitionNavigationPage(new MainPage());
         }
 
         protected override void OnStart()

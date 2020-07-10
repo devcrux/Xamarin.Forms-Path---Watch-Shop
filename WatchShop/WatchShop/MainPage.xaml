@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:st="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
              xmlns:vm="clr-namespace:WatchShop.ViewModel"
              mc:Ignorable="d" BackgroundColor="#F5F6F6"
+             NavigationPage.HasNavigationBar="False"
              x:Class="WatchShop.MainPage">
 
     <ContentPage.BindingContext>
@@ -39,7 +41,8 @@
                 <Image Grid.Column="1" Source="threeDots.png" VerticalOptions="Center" HeightRequest="20" 
                        WidthRequest="20"/>
             </Grid>
-            <CollectionView Grid.Row="3" SelectionMode="None" ItemsSource="{Binding Products}">
+            <CollectionView Grid.Row="3" SelectionMode="Single" ItemsSource="{Binding Products}"
+                            SelectedItem="{Binding SelectedProduct}" SelectionChanged="ProductSelected">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="2"/>
                 </CollectionView.ItemsLayout>
@@ -59,7 +62,9 @@
                             </Grid>
                             <StackLayout Grid.Row="1" Orientation="Horizontal" VerticalOptions="FillAndExpand" 
                                      HorizontalOptions="FillAndExpand" Padding="10,0,0,0">
-                                <Image Source="{Binding Image}" WidthRequest="45" HorizontalOptions="Start"/>
+                                <Image Source="{Binding Image}" WidthRequest="45" HorizontalOptions="Start"
+                                       st:Transition.Name="WatchImage"
+                                       st:Transition.Group="{Binding Name}"/>
                                 <StackLayout Spacing="5" VerticalOptions="CenterAndExpand">
                                     <Label Text="{Binding Name}" TextColor="#2D2942" FontSize="14"/>
                                     <Label Text="{Binding Model}" TextColor="#2D2942" FontSize="12" Opacity="0.5"/>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:st="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             mc:Ignorable="d" BackgroundColor="#F5F6F6"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="WatchShop.DetailsPage">
+
+    <Grid RowDefinitions="2*, *">
+        <Image Aspect="Fill" Source="DetailsBg.png"/>
+        <ImageButton Source="back.png" Margin="20" BackgroundColor="Transparent" HorizontalOptions="Start" VerticalOptions="Start"
+                             HeightRequest="24" WidthRequest="24" Clicked="BackTapped"/>
+        <Grid WidthRequest="280" HeightRequest="360" HorizontalOptions="Center" VerticalOptions="Center">
+            <Path Fill="White" Aspect="Uniform"
+                  Data="M48 169.745C48 162.708 51.6977 156.189 57.7371 152.579L297.737 9.0929C311.068 1.12286 328 10.7271 328 26.2589V331C328 342.046 319.046 351 308 351H68C56.9543 351 48 342.046 48 331V169.745Z"/>
+            <Image Source="{Binding SelectedProduct.Image}" st:Transition.Name="WatchImage"/>
+        </Grid>
+        <StackLayout Spacing="20" Grid.Row="1" Margin="30,0">
+            <Grid>
+                <StackLayout>
+                    <Label Text="{Binding SelectedProduct.Name}" TextColor="#2D2942" FontSize="25" FontAttributes="Bold"/>
+                    <Label Text="{Binding SelectedProduct.Model}" TextColor="#2D2942" FontSize="14" Opacity="0.5"/>
+                </StackLayout>
+                <Label Text="{Binding SelectedProduct.Price, StringFormat='${0}'}" TextColor="#2D2942" FontSize="20" 
+                       FontAttributes="Bold" HorizontalOptions="End"/>
+            </Grid>
+            <StackLayout>
+                <Label Text="About" TextColor="#2D2942" FontSize="16" FontAttributes="Bold"/>
+                <Label Text="{Binding SelectedProduct.Description}" TextColor="#2D2942" FontSize="14" Opacity="0.5"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Spacing="30">
+                <Grid>
+                    <Ellipse Aspect="Uniform" WidthRequest="32" HeightRequest="32" Fill="White"/>
+                    <Path Aspect="Uniform" Stroke="#F83A26" StrokeThickness="2" Data="M5 12H19" StrokeLineCap="Round" 
+                          StrokeLineJoin="Round" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </Grid>
+                <Label Text="1" TextColor="Black" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Grid>
+                    <Ellipse Aspect="Uniform" WidthRequest="32" HeightRequest="32" Fill="White"/>
+                    <Path Aspect="Uniform" Stroke="#F83A26" StrokeThickness="2" Data="M12 5V19" StrokeLineCap="Round" 
+                          StrokeLineJoin="Round" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Path Aspect="Uniform" Stroke="#F83A26" StrokeThickness="2" Data="M5 12H19" StrokeLineCap="Round" 
+                          StrokeLineJoin="Round" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </Grid>
+                <Button WidthRequest="195" HeightRequest="46" CornerRadius="32" HorizontalOptions="End" BackgroundColor="#F83A26"
+                        Text="ADD TO CART" TextColor="White" FontSize="14"/>
+            </StackLayout>
+        </StackLayout>
+    </Grid>
+</ContentPage>

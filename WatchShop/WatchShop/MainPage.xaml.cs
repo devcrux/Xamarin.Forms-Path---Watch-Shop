@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.SharedTransitions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -43,6 +44,12 @@ namespace WatchShop
         private void OverlayTapped(object sender, EventArgs e)
         {
             CloseMenu();
+        }
+
+        private void ProductSelected(object sender, SelectionChangedEventArgs e)
+        {
+            SharedTransitionNavigationPage.SetTransitionSelectedGroup(this, vm.SelectedProduct.Name);
+            vm.ShowDetails();
         }
     }
 }
